@@ -46,9 +46,9 @@ export default function OpeningScreen({ onEnter, isMuted, toggleMute }: OpeningS
       <div className="my-auto text-center flex flex-col items-center gap-3">
         {/* MULTIMEDIA: LOGO APLIKASI (logo-adulting.svg) */}
         <div className="w-full flex justify-center mb-1">
-          <img 
-            src="/images/logo-adulting.svg" 
-            alt="Logo Adulting 101" 
+          <img
+            src="/images/logo-adulting.svg"
+            alt="Logo Adulting 101"
             className="h-16 object-contain"
             onError={(e) => {
               e.currentTarget.style.display = "none";
@@ -65,17 +65,17 @@ export default function OpeningScreen({ onEnter, isMuted, toggleMute }: OpeningS
           Adulting 101:
           <span className="block text-sm font-medium text-brand-blue-800 mt-0.5">The Junior Edition</span>
         </h1>
-        
+
         <p className="text-[10px] font-bold tracking-wide text-brand-lavender-800 uppercase">
           &ldquo;Belajar Menghadapi Hidup Tanpa Burnout&rdquo;
         </p>
 
         {/* MULTIMEDIA: ILUSTRASI MEJA BELAJAR / BURNOUT */}
         <div className="w-full max-w-[280px] h-24 rounded-xl overflow-hidden shadow-2xs border border-stone-200/40 my-1 bg-white flex items-center justify-center">
-          <img 
-            src="/images/meja-belajar.jpg" 
-            alt="Ilustrasi Suasana Meja Belajar Penuh Buku" 
-            className="w-full h-full object-cover" 
+          <img
+            src="/images/meja-belajar.jpg"
+            alt="Ilustrasi Suasana Meja Belajar Penuh Buku"
+            className="w-full h-full object-cover"
             onError={(e) => {
               e.currentTarget.src = "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&q=80";
             }}

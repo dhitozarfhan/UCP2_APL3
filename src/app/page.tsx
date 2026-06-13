@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { 
-  Home as HomeIcon, 
-  Activity, 
-  BookOpen, 
-  Wind, 
-  Smile, 
-  Zap, 
-  CheckSquare, 
-  Volume2, 
+import {
+  Home as HomeIcon,
+  Activity,
+  BookOpen,
+  Wind,
+  Smile,
+  Zap,
+  CheckSquare,
+  Volume2,
   VolumeX,
   Sparkles
 } from "lucide-react";
@@ -52,6 +52,7 @@ export default function AppContainer() {
   // Synthesize soft calming meditation drone
   // Synthesize a beautiful, rich, warm calming meditation pad (Major 9th chord with organic LFO sweeps)
   const startCalmingSynth = () => {
+    stopCalmingSynth();
     try {
       const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
       if (!AudioContextClass) return;
@@ -71,7 +72,7 @@ export default function AppContainer() {
       const filterLFOGain = ctx.createGain();
       filterLFO.frequency.value = 0.08;
       filterLFOGain.gain.value = 40;
-      
+
       filterLFO.connect(filterLFOGain);
       filterLFOGain.connect(mainFilter.frequency);
 
@@ -103,7 +104,7 @@ export default function AppContainer() {
         const osc = ctx.createOscillator();
         osc.type = "sine";
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        
+
         // Add subtle detuning for a rich chorus texture (except bass)
         if (index > 0) {
           osc.detune.setValueAtTime((Math.random() - 0.5) * 8, ctx.currentTime);
@@ -133,27 +134,27 @@ export default function AppContainer() {
         osc1Ref.current.forEach((osc: any) => {
           try {
             osc.stop();
-          } catch (e) {}
+          } catch (e) { }
         });
       } else if (osc1Ref.current && typeof (osc1Ref.current as any).stop === "function") {
         try {
           (osc1Ref.current as any).stop();
-        } catch (e) {}
+        } catch (e) { }
       }
 
       if (Array.isArray(osc2Ref.current)) {
         osc2Ref.current.forEach((lfo: any) => {
           try {
             lfo.stop();
-          } catch (e) {}
+          } catch (e) { }
         });
       } else if (osc2Ref.current && typeof (osc2Ref.current as any).stop === "function") {
         try {
           (osc2Ref.current as any).stop();
-        } catch (e) {}
+        } catch (e) { }
       }
-    } catch (e) {}
-    
+    } catch (e) { }
+
     osc1Ref.current = null;
     osc2Ref.current = null;
     gainNodeRef.current = null;
@@ -161,7 +162,7 @@ export default function AppContainer() {
     if (audioCtxRef.current) {
       try {
         audioCtxRef.current.close();
-      } catch (e) {}
+      } catch (e) { }
       audioCtxRef.current = null;
     }
   };
@@ -170,7 +171,7 @@ export default function AppContainer() {
     if (e) {
       try {
         e.stopPropagation();
-      } catch (err) {}
+      } catch (err) { }
     }
     if (bgAudioRef.current) {
       if (isMuted) {
@@ -179,6 +180,7 @@ export default function AppContainer() {
           if (playPromise !== undefined) {
             playPromise
               .then(() => {
+                stopCalmingSynth();
                 setIsMuted(false);
               })
               .catch((err) => {
@@ -187,6 +189,7 @@ export default function AppContainer() {
                 setIsMuted(false);
               });
           } else {
+            stopCalmingSynth();
             setIsMuted(false);
           }
         } catch (err) {
@@ -221,43 +224,6 @@ export default function AppContainer() {
     };
   }, []);
 
-  // First user interaction anywhere on page will try to play background audio
-  useEffect(() => {
-    const playAttempt = (e: Event) => {
-      const target = e.target as HTMLElement;
-      // Do not play background audio if user is clicking a video or the BGM sound toggle button
-      if (
-        target instanceof HTMLVideoElement ||
-        (target && typeof target.closest === "function" && target.closest("button")?.title?.includes("Musik"))
-      ) {
-        return;
-      }
-      if (bgAudioRef.current && isMuted) {
-        try {
-          const playPromise = bgAudioRef.current.play();
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                setIsMuted(false);
-              })
-              .catch((err) => {
-                // Wait for explicit gestures
-                console.log("Autoplay check: audio playback requires explicit gesture", err);
-              });
-          }
-        } catch (e) {}
-      }
-    };
-
-    window.addEventListener("click", playAttempt);
-    window.addEventListener("keydown", playAttempt);
-
-    return () => {
-      window.removeEventListener("click", playAttempt);
-      window.removeEventListener("keydown", playAttempt);
-    };
-  }, [isMuted]);
-
   // Unified media playback coordinator to prevent sound overlap (collision)
   useEffect(() => {
     const handleMediaPlay = (e: Event) => {
@@ -265,6 +231,14 @@ export default function AppContainer() {
 
       // --- VIDEO PLAYBACK ---
       if (target instanceof HTMLVideoElement) {
+        // Pause all other video elements on the page to prevent overlapping video sounds
+        const videos = document.querySelectorAll("video");
+        videos.forEach((vid) => {
+          if (vid !== target) {
+            try { vid.pause(); } catch (err) {}
+          }
+        });
+
         // Only pause BGM/audios if the video is not muted and has sound
         if (!target.muted && target.volume > 0) {
           // If BGM is playing (isMuted is false)
@@ -277,7 +251,7 @@ export default function AppContainer() {
             setIsMuted(true);
           }
 
-          // Pause all other audio elements on the page
+          // Pause all local audio elements on the page
           const audios = document.querySelectorAll("audio");
           audios.forEach((audio) => {
             if (audio !== bgAudioRef.current) {
@@ -309,6 +283,12 @@ export default function AppContainer() {
               }
             }
           });
+
+          // Also pause any playing videos
+          const videos = document.querySelectorAll("video");
+          videos.forEach((vid) => {
+            try { vid.pause(); } catch (err) {}
+          });
         } else {
           // If a local long audio track started playing, pause the global BGM
           if (!isMutedRef.current) {
@@ -331,13 +311,19 @@ export default function AppContainer() {
               }
             }
           });
+
+          // Also pause all video elements
+          const videos = document.querySelectorAll("video");
+          videos.forEach((vid) => {
+            try { vid.pause(); } catch (err) {}
+          });
         }
       }
     };
 
     const handleMediaPauseOrEnd = (e: Event) => {
       const target = e.target;
-      
+
       // If BGM was playing before, and there are no other unmuted videos or long audios playing, resume BGM
       if (wasPlayingRef.current) {
         if (target instanceof HTMLVideoElement || target instanceof HTMLAudioElement) {
@@ -369,6 +355,7 @@ export default function AppContainer() {
             if (bgAudioRef.current) {
               bgAudioRef.current.play()
                 .then(() => {
+                  stopCalmingSynth();
                   setIsMuted(false);
                 })
                 .catch((err) => {
@@ -398,11 +385,25 @@ export default function AppContainer() {
 
   // Resume BGM if active tab changes and BGM was paused by a video (as video element unmounts)
   useEffect(() => {
+    // Pause all playing videos and local audios when active tab changes
+    const videos = document.querySelectorAll("video");
+    videos.forEach((vid) => {
+      try { vid.pause(); } catch (err) {}
+    });
+
+    const audios = document.querySelectorAll("audio");
+    audios.forEach((audio) => {
+      if (audio !== bgAudioRef.current) {
+        try { audio.pause(); } catch (err) {}
+      }
+    });
+
     if (wasPlayingRef.current) {
       wasPlayingRef.current = false;
       if (bgAudioRef.current) {
         bgAudioRef.current.play()
           .then(() => {
+            stopCalmingSynth();
             setIsMuted(false);
           })
           .catch((err) => {
@@ -461,7 +462,7 @@ export default function AppContainer() {
 
   return (
     <div className="min-h-screen bg-stone-100 flex items-center justify-center p-0 sm:p-6 transition-all duration-300">
-      
+
       {/* MULTIMEDIA: GLOBAL CALMING BACKGROUND MUSIC */}
       <audio src="/audio/calming-bgm.mp3" ref={bgAudioRef} loop />
 
@@ -472,7 +473,7 @@ export default function AppContainer() {
 
       {/* Mobile Device Frame Mock */}
       <div className="w-full max-w-md bg-stone-50 min-h-screen sm:min-h-[840px] sm:max-h-[880px] sm:rounded-3xl sm:shadow-2xl flex flex-col relative overflow-hidden border border-stone-200/50">
-        
+
         {/* Global App Header (Shows only when user entered the app and is not on the opening splash) */}
         {hasEntered && activeTab !== "home" && (
           <header className="flex justify-between items-center px-6 py-4 bg-white/80 backdrop-blur-md border-b border-stone-200/40 sticky top-0 z-40">
@@ -480,7 +481,7 @@ export default function AppContainer() {
               <span className="w-2.5 h-2.5 rounded-full bg-brand-blue-500 animate-ping" />
               <h1 className="text-sm font-extrabold tracking-tight text-stone-800">Adulting 101</h1>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold text-stone-400">Ambient Sound</span>
               <button
@@ -502,10 +503,10 @@ export default function AppContainer() {
         <main className="flex-1 flex flex-col overflow-y-auto no-scrollbar">
           {/* Gated entry screen or current active tab page */}
           {!hasEntered ? (
-            <OpeningScreen 
-              onEnter={handleEnterApp} 
-              isMuted={isMuted} 
-              toggleMute={toggleMute} 
+            <OpeningScreen
+              onEnter={handleEnterApp}
+              isMuted={isMuted}
+              toggleMute={toggleMute}
             />
           ) : (
             renderTabContent()
@@ -521,11 +522,10 @@ export default function AppContainer() {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id as TabId)}
-                  className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition-all duration-200 cursor-pointer ${
-                    isActive 
-                      ? "text-brand-blue-600 font-extrabold bg-brand-blue-50 scale-105" 
+                  className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition-all duration-200 cursor-pointer ${isActive
+                      ? "text-brand-blue-600 font-extrabold bg-brand-blue-50 scale-105"
                       : "text-stone-400 hover:text-stone-600"
-                  }`}
+                    }`}
                 >
                   <span className={isActive ? "text-brand-blue-500 animate-pulse" : ""}>
                     {item.icon}

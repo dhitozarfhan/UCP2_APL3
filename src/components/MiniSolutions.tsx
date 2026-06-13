@@ -38,7 +38,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
     if (isBreathing) {
       setBreathSeconds(4);
       setBreathPhase("Tarik Napas");
-      
+
       // Play wind audio
       if (breathAudioRef.current) {
         try {
@@ -50,7 +50,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
 
       let sec = 4;
       let phase: "Tarik Napas" | "Tahan" | "Hembuskan" = "Tarik Napas";
-      
+
       breathTimerRef.current = setInterval(() => {
         sec -= 1;
         if (sec <= 0) {
@@ -111,14 +111,6 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
                 tickAudioRef.current.pause();
               } catch (err) {
                 console.warn("Tick audio pause failed", err);
-              }
-            }
-            // Play chime sound if available
-            if (chimeRef.current) {
-              try {
-                chimeRef.current.play().catch((err) => console.log("Chime sound blocked", err));
-              } catch (err) {
-                console.warn("Chime sound play failed", err);
               }
             }
             // Simulate completion beep/alert
@@ -193,11 +185,10 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
           <button
             key={btn.id}
             onClick={() => setActiveTab(btn.id as SolutionTab)}
-            className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border text-center transition-all ${
-              activeTab === btn.id
+            className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border text-center transition-all ${activeTab === btn.id
                 ? "bg-stone-900 border-stone-800 text-white shadow-xs"
                 : "bg-white border-stone-200 text-stone-500 hover:bg-stone-50/50"
-            }`}
+              }`}
           >
             <span className={activeTab === btn.id ? "text-white" : btn.color}>{btn.icon}</span>
             <span className="text-[9px] font-extrabold">{btn.label}</span>
@@ -206,11 +197,11 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
       </div>
 
       {/* Tab Panels */}
-      <div className="flex-1 flex flex-col justify-center min-h-[350px]">
-        
+      <div className="py-2">
+
         {/* PANEL 1: BREATHING */}
         {activeTab === "breathing" && (
-          <div className="flex-1 flex flex-col justify-between items-center text-center py-2 animate-fade-in">
+          <div className="flex flex-col items-center text-center py-2 animate-fade-in gap-4">
             <div>
               <h3 className="text-base font-extrabold text-stone-800">Latihan Napas Kotak (4-4-4)</h3>
               <p className="text-xs text-stone-500 mt-1 max-w-xs mx-auto">
@@ -222,15 +213,12 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
             <div className="relative w-44 h-44 my-4 flex items-center justify-center">
               {/* Animated pulse ring */}
               <div
-                className={`absolute inset-0 rounded-full border-4 border-dashed border-brand-blue-200 transition-all duration-[4000ms] ease-in-out ${
-                  isBreathing && breathPhase === "Tarik Napas" ? "scale-140 opacity-100 bg-brand-blue-50/30" : ""
-                } ${
-                  isBreathing && breathPhase === "Tahan" ? "scale-140 opacity-100 bg-brand-blue-100/40" : ""
-                } ${
-                  isBreathing && breathPhase === "Hembuskan" ? "scale-100 opacity-60 bg-transparent" : ""
-                } ${!isBreathing ? "scale-100 opacity-30" : ""}`}
+                className={`absolute inset-0 rounded-full border-4 border-dashed border-brand-blue-200 transition-all duration-[4000ms] ease-in-out ${isBreathing && breathPhase === "Tarik Napas" ? "scale-140 opacity-100 bg-brand-blue-50/30" : ""
+                  } ${isBreathing && breathPhase === "Tahan" ? "scale-140 opacity-100 bg-brand-blue-100/40" : ""
+                  } ${isBreathing && breathPhase === "Hembuskan" ? "scale-100 opacity-60 bg-transparent" : ""
+                  } ${!isBreathing ? "scale-100 opacity-30" : ""}`}
               />
-              
+
               {/* Inner Circle */}
               <div className="w-32 h-32 rounded-full bg-white border border-stone-200 shadow-lg flex flex-col items-center justify-center z-10 p-4">
                 <span className="text-xs font-semibold text-stone-400">Fase</span>
@@ -246,11 +234,10 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
             <div className="w-full">
               <button
                 onClick={() => setIsBreathing(!isBreathing)}
-                className={`w-full py-3.5 rounded-xl font-bold transition-all ${
-                  isBreathing
+                className={`w-full py-3.5 rounded-xl font-bold transition-all ${isBreathing
                     ? "bg-red-500 hover:bg-red-600 text-white"
                     : "bg-brand-blue-500 hover:bg-brand-blue-600 text-white shadow-sm"
-                }`}
+                  }`}
               >
                 {isBreathing ? "Hentikan Latihan" : "Mulai Napas Tenang"}
               </button>
@@ -265,7 +252,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
 
         {/* PANEL 2: STRETCHING */}
         {activeTab === "stretching" && (
-          <div className="flex-1 flex flex-col justify-between animate-fade-in gap-3">
+          <div className="flex flex-col animate-fade-in gap-4">
             <div className="text-center">
               <h3 className="text-base font-extrabold text-stone-800">Study Break Stretching</h3>
               <p className="text-xs text-stone-500 mt-1">
@@ -275,9 +262,9 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
 
             {/* MULTIMEDIA: ILUSTRASI GERAKAN RELAKSASI */}
             <div className="w-full rounded-xl overflow-hidden h-28 relative border border-stone-200/50 bg-stone-100 shadow-2xs">
-              <img 
-                src="/images/stretching-steps.png" 
-                alt="Ilustrasi Gerakan Peregangan" 
+              <img
+                src="/images/stretching-steps.png"
+                alt="Ilustrasi Gerakan Peregangan"
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.currentTarget.src = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=80";
@@ -309,7 +296,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
 
         {/* PANEL 3: FOCUS TIMER */}
         {activeTab === "timer" && (
-          <div className="flex-1 flex flex-col justify-between items-center text-center py-2 animate-fade-in">
+          <div className="flex flex-col items-center text-center py-2 animate-fade-in gap-4">
             <div>
               <h3 className="text-base font-extrabold text-stone-800">Pomodoro Focus Timer</h3>
               <p className="text-xs text-stone-500 mt-1">
@@ -327,11 +314,10 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
                 <button
                   key={preset.min}
                   onClick={() => selectTimerPreset(preset.min as 25 | 5 | 15)}
-                  className={`text-[10px] font-extrabold px-3 py-1.5 rounded-full border transition-all ${
-                    timerPreset === preset.min
+                  className={`text-[10px] font-extrabold px-3 py-1.5 rounded-full border transition-all ${timerPreset === preset.min
                       ? "bg-brand-lavender-500 text-white border-brand-lavender-600 shadow-2xs"
                       : "bg-white border-stone-200 text-stone-500 hover:bg-stone-50"
-                  }`}
+                    }`}
                 >
                   {preset.min}m ({preset.label})
                 </button>
@@ -374,7 +360,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
 
         {/* PANEL 4: DIGITAL DETOX */}
         {activeTab === "detox" && (
-          <div className="flex-1 flex flex-col justify-between animate-fade-in text-center py-2">
+          <div className="flex flex-col animate-fade-in gap-4">
             <div>
               <h3 className="text-base font-extrabold text-stone-800">1-Hour Off-Screen Challenge</h3>
               <p className="text-xs text-stone-500 mt-1">
@@ -460,10 +446,10 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
             }}
             className="p-2 bg-stone-100 hover:bg-stone-200 rounded-full text-stone-700 transition-colors cursor-pointer"
           >
-            {audioPlaying ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-brand-blue-600" />}
+            {audioPlaying ? <Volume2 className="w-4 h-4 text-brand-blue-600 animate-pulse" /> : <VolumeX className="w-4 h-4 text-stone-400" />}
           </button>
         </div>
-        
+
         {/* Visualizer Simulation */}
         {audioPlaying && (
           <div className="flex gap-0.5 items-end h-6 mt-3 justify-center">
@@ -481,25 +467,25 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
         )}
 
         {/* MULTIMEDIA: AUDIO RELAKSAS (angin-halus.mp3, ticking-lembut.mp3, ambient-hening.mp3 di public/audio/) */}
-        <audio 
-          src="/audio/ambient-hening.mp3" 
-          ref={audioRef} 
-          loop 
+        <audio
+          src="/audio/ambient-hening.mp3"
+          ref={audioRef}
+          loop
           onPlay={() => setAudioPlaying(true)}
           onPause={() => setAudioPlaying(false)}
         />
         <audio src="/audio/chime-cerah.mp3" ref={chimeRef} />
-        <audio 
-          src="/audio/angin-halus.mp3" 
-          ref={breathAudioRef} 
-          loop 
+        <audio
+          src="/audio/angin-halus.mp3"
+          ref={breathAudioRef}
+          loop
           onPlay={() => setIsBreathing(true)}
           onPause={() => setIsBreathing(false)}
         />
-        <audio 
-          src="/audio/ticking-lembut.mp3" 
-          ref={tickAudioRef} 
-          loop 
+        <audio
+          src="/audio/ticking-lembut.mp3"
+          ref={tickAudioRef}
+          loop
           onPlay={() => setIsTimerRunning(true)}
           onPause={() => setIsTimerRunning(false)}
         />

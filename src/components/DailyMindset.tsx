@@ -120,7 +120,7 @@ export default function DailyMindset({ onBackToMenu }: DailyMindsetProps) {
               <span className="text-[10px] font-bold tracking-wider opacity-80">
                 — {QUOTES[currentIdx].author}
               </span>
-              
+
               <div className="flex gap-2">
                 <button
                   onClick={() => toggleLike(QUOTES[currentIdx].id)}
@@ -128,9 +128,8 @@ export default function DailyMindset({ onBackToMenu }: DailyMindsetProps) {
                   title="Sukai"
                 >
                   <Heart
-                    className={`w-3.5 h-3.5 ${
-                      liked[QUOTES[currentIdx].id] ? "text-red-400 fill-current" : "text-white"
-                    }`}
+                    className={`w-3.5 h-3.5 ${liked[QUOTES[currentIdx].id] ? "text-red-400 fill-current" : "text-white"
+                      }`}
                   />
                 </button>
                 <button
@@ -204,14 +203,14 @@ export default function DailyMindset({ onBackToMenu }: DailyMindsetProps) {
               }}
               className="p-2 bg-stone-100 hover:bg-stone-200 rounded-full text-stone-700 transition-colors cursor-pointer"
             >
-              {boostPlaying ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-brand-lavender-600" />}
+              {boostPlaying ? <Volume2 className="w-4 h-4 text-brand-lavender-600 animate-pulse" /> : <VolumeX className="w-4 h-4 text-stone-400" />}
             </button>
           </div>
           {/* MULTIMEDIA: AUDIO BACKGROUND MUSIC (piano-lofi-sedih.mp3 di public/audio/) */}
-          <audio 
-            src="/audio/piano-lofi-sedih.mp3" 
-            ref={boostAudioRef} 
-            loop 
+          <audio
+            src="/audio/piano-lofi-sedih.mp3"
+            ref={boostAudioRef}
+            loop
             onPlay={() => setBoostPlaying(true)}
             onPause={() => setBoostPlaying(false)}
           />
