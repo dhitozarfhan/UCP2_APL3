@@ -265,7 +265,7 @@ export default function AppContainer() {
       if (target instanceof HTMLAudioElement) {
         const src = target.src || "";
         const isBGM = target === bgAudioRef.current;
-        const isSFX = src.includes("checklist-done.mp3") || src.includes("chime-cerah.mp3") || src.includes("pop-click.mp3");
+        const isSFX = src.includes("checklist-done.mp3") || src.includes("pop-click.mp3");
 
         if (isSFX) {
           return; // Allow short SFX to play without interruption
@@ -277,7 +277,7 @@ export default function AppContainer() {
           audios.forEach((audio) => {
             if (audio !== bgAudioRef.current) {
               const audioSrc = audio.src || "";
-              const isOtherSFX = audioSrc.includes("checklist-done.mp3") || audioSrc.includes("chime-cerah.mp3") || audioSrc.includes("pop-click.mp3");
+              const isOtherSFX = audioSrc.includes("checklist-done.mp3") || audioSrc.includes("pop-click.mp3");
               if (!isOtherSFX) {
                 try { audio.pause(); } catch (err) {}
               }
@@ -305,7 +305,7 @@ export default function AppContainer() {
           audios.forEach((audio) => {
             if (audio !== bgAudioRef.current && audio !== target) {
               const audioSrc = audio.src || "";
-              const isOtherSFX = audioSrc.includes("checklist-done.mp3") || audioSrc.includes("chime-cerah.mp3") || audioSrc.includes("pop-click.mp3");
+              const isOtherSFX = audioSrc.includes("checklist-done.mp3") || audioSrc.includes("pop-click.mp3");
               if (!isOtherSFX) {
                 try { audio.pause(); } catch (err) {}
               }
@@ -329,7 +329,7 @@ export default function AppContainer() {
         if (target instanceof HTMLVideoElement || target instanceof HTMLAudioElement) {
           const src = (target as any).src || "";
           const isBGM = target === bgAudioRef.current;
-          const isSFX = src.includes("checklist-done.mp3") || src.includes("chime-cerah.mp3") || src.includes("pop-click.mp3");
+          const isSFX = src.includes("checklist-done.mp3") || src.includes("pop-click.mp3");
 
           if (isBGM || isSFX) {
             return;
@@ -346,7 +346,7 @@ export default function AppContainer() {
           const anyOtherLongAudioPlaying = Array.from(audios).some((audio) => {
             if (audio === bgAudioRef.current || audio === target) return false;
             const audioSrc = audio.src || "";
-            const isOtherSFX = audioSrc.includes("checklist-done.mp3") || audioSrc.includes("chime-cerah.mp3") || audioSrc.includes("pop-click.mp3");
+            const isOtherSFX = audioSrc.includes("checklist-done.mp3") || audioSrc.includes("pop-click.mp3");
             return !isOtherSFX && !audio.paused;
           });
 
@@ -479,7 +479,7 @@ export default function AppContainer() {
           <header className="flex justify-between items-center px-6 py-4 bg-white/80 backdrop-blur-md border-b border-stone-200/40 sticky top-0 z-40">
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-brand-blue-500 animate-ping" />
-              <h1 className="text-sm font-extrabold tracking-tight text-stone-800">Adulting 101</h1>
+              <h1 className="text-sm font-extrabold tracking-tight text-stone-800">Anti Burnout Junior</h1>
             </div>
 
             <div className="flex items-center gap-2">

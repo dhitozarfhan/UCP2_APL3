@@ -24,7 +24,7 @@ const QUOTES: QuoteItem[] = [
   {
     id: 2,
     text: "Nilai ujian itu penting, tapi kesehatan mentalmu jauh lebih berharga. Kamu itu luar biasa, dan nilai raport nggak bisa menggambarkan seberapa bernilainya dirimu.",
-    author: "Adulting 101 Guide",
+    author: "Anti Burnout Guide",
     theme: "from-brand-lavender-500 to-pink-600 text-white",
   },
   {

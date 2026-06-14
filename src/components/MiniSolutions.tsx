@@ -14,7 +14,6 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
 
   // HTML5 audio refs for nature sounds and focus chime
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const chimeRef = useRef<HTMLAudioElement | null>(null);
   const breathAudioRef = useRef<HTMLAudioElement | null>(null);
   const tickAudioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -474,7 +473,6 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
           onPlay={() => setAudioPlaying(true)}
           onPause={() => setAudioPlaying(false)}
         />
-        <audio src="/audio/chime-cerah.mp3" ref={chimeRef} />
         <audio
           src="/audio/angin-halus.mp3"
           ref={breathAudioRef}

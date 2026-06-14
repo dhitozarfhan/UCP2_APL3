@@ -1,5 +1,5 @@
 # LAPORAN UCP 2: APLIKASI MULTIMEDIA INTERAKTIF
-## ADULTING 101: THE JUNIOR EDITION
+## ANTI BURNOUT JUNIOR
 > **"Belajar Menghadapi Hidup Tanpa Burnout"**
 
 ### Tim Penyusun

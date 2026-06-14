@@ -65,15 +65,16 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
   return (
     <div className="flex-1 flex flex-col p-6 bg-stone-50 overflow-y-auto no-scrollbar animate-fade-in pb-20">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-stone-900 to-stone-800 rounded-3xl p-5 text-white shadow-md mb-6 relative overflow-hidden">
-        <div className="absolute right-[-10px] bottom-[-10px] opacity-10">
-          <Sparkles className="w-32 h-32 text-white" />
+      <div className="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 rounded-3xl p-6 pb-7 text-white shadow-md mb-6 relative">
+        {/* Decorative background elements - pointer-events-none so they don't block text */}
+        <div className="absolute right-2 top-2 opacity-[0.08] pointer-events-none select-none">
+          <Sparkles className="w-28 h-28 text-white" />
         </div>
-        <span className="text-[10px] font-extrabold uppercase bg-white/20 px-3 py-1 rounded-full text-brand-blue-100">
+        <span className="inline-flex items-center text-[10px] font-extrabold uppercase bg-white/20 px-3 py-1 rounded-full text-brand-blue-100">
           Ruang Aman Digitalmu 🌿
         </span>
-        <h2 className="text-lg font-black mt-2">Halo Teman Hebat!</h2>
-        <p className="text-xs text-stone-300 leading-relaxed mt-1">
+        <h2 className="text-lg font-black mt-3 leading-snug">Halo Teman Hebat!</h2>
+        <p className="text-xs text-stone-300 leading-relaxed mt-1.5 max-w-[85%]">
           Sudahkah kamu menyayangi dirimu sendiri hari ini? Pilih salah satu petualangan di bawah untuk memulai healing journey-mu.
         </p>
       </div>

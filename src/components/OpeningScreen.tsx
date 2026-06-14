@@ -12,14 +12,6 @@ interface OpeningScreenProps {
 export default function OpeningScreen({ onEnter, isMuted, toggleMute }: OpeningScreenProps) {
   const handleEnterClick = () => {
     try {
-      const chime = new Audio("/audio/chime-cerah.mp3");
-      chime.volume = 0.5;
-      chime.play().catch((e) => console.log("Chime blocked by browser gesture policies", e));
-    } catch (err) {
-      console.warn("Chime playback failed", err);
-    }
-
-    try {
       onEnter();
     } catch (err) {
       console.error("onEnter failed", err);
@@ -31,7 +23,7 @@ export default function OpeningScreen({ onEnter, isMuted, toggleMute }: OpeningS
       {/* Header Info */}
       <div className="flex justify-between items-center mt-2">
         <span className="flex items-center gap-1 text-xs font-semibold text-brand-blue-800 bg-brand-blue-100 px-3 py-1 rounded-full">
-          <Sparkles className="w-3 animate-pulse text-brand-blue-500" /> Version 1.0 (Junior Edition)
+          <Sparkles className="w-3 animate-pulse text-brand-blue-500" /> Anti Burnout Junior v1.0
         </span>
         <button
           onClick={toggleMute}
@@ -44,26 +36,18 @@ export default function OpeningScreen({ onEnter, isMuted, toggleMute }: OpeningS
 
       {/* Hero Content */}
       <div className="my-auto text-center flex flex-col items-center gap-3">
-        {/* MULTIMEDIA: LOGO APLIKASI (logo-adulting.svg) */}
+        {/* MULTIMEDIA: LOGO APLIKASI (logo-antiburnout.png) */}
         <div className="w-full flex justify-center mb-1">
           <img
-            src="/images/logo-adulting.svg"
-            alt="Logo Adulting 101"
-            className="h-16 object-contain"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
+            src="/images/logo-antiburnout.png"
+            alt="Logo Anti Burnout Junior"
+            className="w-16 h-16 object-cover rounded-2xl shadow-lg border border-stone-200/50 transform rotate-6 animate-float mb-1"
           />
         </div>
 
-        {/* Fallback CSS Logo if SVG fails to render */}
-        <div className="w-16 h-16 bg-gradient-to-tr from-brand-blue-500 via-brand-lavender-500 to-brand-mint-200 rounded-2xl flex items-center justify-center shadow-lg transform rotate-6 animate-float mb-1">
-          <span className="text-2xl font-extrabold text-white select-none">A101</span>
-        </div>
-
         <h1 className="text-xl font-extrabold tracking-tight text-stone-800">
-          Adulting 101:
-          <span className="block text-sm font-medium text-brand-blue-800 mt-0.5">The Junior Edition</span>
+          Anti Burnout
+          <span className="block text-sm font-medium text-brand-blue-800 mt-0.5">Junior</span>
         </h1>
 
         <p className="text-[10px] font-bold tracking-wide text-brand-lavender-800 uppercase">
