@@ -43,7 +43,7 @@ const CHECKLIST_ITEMS: ChecklistItem[] = [
     id: "journal",
     title: "Ekspresi Diri / Curhat",
     desc: "Tulis di jurnal harian atau mengobrol santai 10 menit dengan teman/orang tua terdekat.",
-    image: "/images/checklist/gadget.png",
+    image: "/images/checklist/jurnal.svg",
   },
 ];
 

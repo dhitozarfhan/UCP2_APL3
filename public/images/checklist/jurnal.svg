@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="120" fill="#FFF0F0"/>
+  <!-- Book/Journal -->
+  <rect x="70" y="55" width="116" height="150" rx="12" fill="#F9A8A8"/>
+  <rect x="80" y="55" width="106" height="150" rx="10" fill="#FECACA"/>
+  <!-- Book spine -->
+  <rect x="70" y="55" width="14" height="150" rx="4" fill="#F87171"/>
+  <!-- Lines on page -->
+  <line x1="100" y1="90" x2="168" y2="90" stroke="#F9A8A8" stroke-width="3" stroke-linecap="round"/>
+  <line x1="100" y1="108" x2="158" y2="108" stroke="#F9A8A8" stroke-width="3" stroke-linecap="round"/>
+  <line x1="100" y1="126" x2="165" y2="126" stroke="#F9A8A8" stroke-width="3" stroke-linecap="round"/>
+  <line x1="100" y1="144" x2="150" y2="144" stroke="#F9A8A8" stroke-width="3" stroke-linecap="round"/>
+  <line x1="100" y1="162" x2="145" y2="162" stroke="#F9A8A8" stroke-width="3" stroke-linecap="round"/>
+  <!-- Pencil -->
+  <g transform="translate(150, 130) rotate(35)">
+    <rect x="0" y="0" width="12" height="70" rx="2" fill="#FBBF24"/>
+    <polygon points="2,70 10,70 6,82" fill="#FDE68A"/>
+    <rect x="0" y="0" width="12" height="8" rx="2" fill="#F59E0B"/>
+    <rect x="3" y="70" width="6" height="4" fill="#92400E"/>
+  </g>
+  <!-- Heart decoration -->
+  <path d="M155 75 C155 69, 165 65, 165 73 C165 65, 175 69, 175 75 C175 85, 165 90, 165 90 C165 90, 155 85, 155 75Z" fill="#F87171" opacity="0.7"/>
+</svg>

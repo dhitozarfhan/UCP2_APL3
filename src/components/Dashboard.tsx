@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { 
-  Activity, 
-  BookOpen, 
-  Wind, 
-  Smile, 
-  Zap, 
-  CheckSquare, 
+import {
+  Activity,
+  BookOpen,
+  Wind,
+  Smile,
+  Zap,
+  CheckSquare,
   Sparkles,
   ChevronRight
 } from "lucide-react";
@@ -65,16 +65,16 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
   return (
     <div className="flex-1 flex flex-col p-6 bg-stone-50 overflow-y-auto no-scrollbar animate-fade-in pb-20">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 rounded-3xl p-6 pb-7 text-white shadow-md mb-6 relative">
-        {/* Decorative background elements - pointer-events-none so they don't block text */}
-        <div className="absolute right-2 top-2 opacity-[0.08] pointer-events-none select-none">
-          <Sparkles className="w-28 h-28 text-white" />
+      <div className="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 rounded-3xl p-6 pb-8 text-white shadow-md mb-6 relative">
+        {/* Decorative - top-right, no overlap with text */}
+        <div className="absolute right-3 top-3 opacity-[0.07] pointer-events-none">
+          <Sparkles className="w-24 h-24 text-white" />
         </div>
-        <span className="inline-flex items-center text-[10px] font-extrabold uppercase bg-white/20 px-3 py-1 rounded-full text-brand-blue-100">
+        <span className="inline-block text-[10px] font-extrabold uppercase bg-white/20 px-3 py-1 rounded-full text-brand-blue-100">
           Ruang Aman Digitalmu 🌿
         </span>
-        <h2 className="text-lg font-black mt-3 leading-snug">Halo Teman Hebat!</h2>
-        <p className="text-xs text-stone-300 leading-relaxed mt-1.5 max-w-[85%]">
+        <h2 className="text-lg font-black mt-3">Halo Teman Hebat!</h2>
+        <p className="text-xs text-stone-300 leading-relaxed mt-2 pr-10">
           Sudahkah kamu menyayangi dirimu sendiri hari ini? Pilih salah satu petualangan di bawah untuk memulai healing journey-mu.
         </p>
       </div>
@@ -84,7 +84,7 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
         <h3 className="text-xs font-black text-stone-500 uppercase tracking-wider">
           Menu Utama Self-Healing
         </h3>
-        
+
         <div className="grid grid-cols-1 gap-3">
           {menuItems.map((item) => (
             <button
@@ -106,7 +106,7 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           ))}
         </div>
       </div>
-      
+
       {/* Friendly Teen footer reminder */}
       <p className="text-[10px] text-stone-400 text-center italic mt-6">
         &ldquo;Satu langkah kecil lebih baik daripada diam menumpuk lelah.&rdquo;
