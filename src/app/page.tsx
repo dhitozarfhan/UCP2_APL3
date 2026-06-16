@@ -479,7 +479,7 @@ export default function AppContainer() {
           <header className="flex justify-between items-center px-6 py-4 bg-white/80 backdrop-blur-md border-b border-stone-200/40 sticky top-0 z-40">
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-brand-blue-500 animate-ping" />
-              <h1 className="text-sm font-extrabold tracking-tight text-stone-800">Anti Burnout Junior</h1>
+              <h1 className="text-sm font-extrabold tracking-tight text-stone-800">Adulting 101</h1>
             </div>
 
             <div className="flex items-center gap-2">

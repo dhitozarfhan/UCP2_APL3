@@ -23,7 +23,7 @@ export default function OpeningScreen({ onEnter, isMuted, toggleMute }: OpeningS
       {/* Header Info */}
       <div className="flex justify-between items-center mt-2">
         <span className="flex items-center gap-1 text-xs font-semibold text-brand-blue-800 bg-brand-blue-100 px-3 py-1 rounded-full">
-          <Sparkles className="w-3 animate-pulse text-brand-blue-500" /> Anti Burnout Junior v1.0
+          <Sparkles className="w-3 animate-pulse text-brand-blue-500" /> Adulting 101 v1.0
         </span>
         <button
           onClick={toggleMute}
@@ -40,14 +40,14 @@ export default function OpeningScreen({ onEnter, isMuted, toggleMute }: OpeningS
         <div className="w-full flex justify-center mb-1">
           <img
             src="/images/logo-antiburnout.png"
-            alt="Logo Anti Burnout Junior"
+            alt="Logo Adulting 101"
             className="w-16 h-16 object-cover rounded-2xl shadow-lg border border-stone-200/50 transform rotate-6 animate-float mb-1"
           />
         </div>
 
         <h1 className="text-xl font-extrabold tracking-tight text-stone-800">
-          Anti Burnout
-          <span className="block text-sm font-medium text-brand-blue-800 mt-0.5">Junior</span>
+          Adulting 101:
+          <span className="block text-sm font-medium text-brand-blue-800 mt-0.5">The Junior Edition</span>
         </h1>
 
         <p className="text-[10px] font-bold tracking-wide text-brand-lavender-800 uppercase">

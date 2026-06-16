@@ -260,11 +260,11 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
             </div>
 
             {/* MULTIMEDIA: ILUSTRASI GERAKAN RELAKSASI */}
-            <div className="w-full rounded-xl overflow-hidden h-28 relative border border-stone-200/50 bg-stone-100 shadow-2xs">
+            <div className="w-full rounded-xl overflow-hidden h-28 relative border border-stone-200/50 bg-stone-100 shadow-2xs p-2 flex items-center justify-center">
               <img
-                src="/images/stretching-steps.png"
-                alt="Ilustrasi Gerakan Peregangan"
-                className="w-full h-full object-cover"
+                src="/images/ilustrasi-relaksasi.png"
+                alt="Ilustrasi Relaksasi"
+                className="w-full h-full object-contain"
                 onError={(e) => {
                   e.currentTarget.src = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=80";
                 }}
@@ -297,7 +297,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
         {activeTab === "timer" && (
           <div className="flex flex-col items-center text-center py-2 animate-fade-in gap-4">
             <div>
-              <h3 className="text-base font-extrabold text-stone-800">Pomodoro Focus Timer</h3>
+              <h3 className="text-base font-extrabold text-stone-800">Focus Timer</h3>
               <p className="text-xs text-stone-500 mt-1">
                 Belajar fokus 25 menit, lalu istirahat 5 menit. Efektif kurangi kejenuhan.
               </p>
@@ -394,7 +394,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
       {/* 2x2 Video Grid of Relaxation Solutions */}
       <div className="bg-white border border-stone-200/50 rounded-2xl p-4 shadow-2xs mt-6 text-left">
         <h3 className="text-xs font-black text-stone-500 uppercase tracking-wider mb-3">
-          Galeri Video Relaksasi (Grid 2x2)
+          Galeri Video Relaksasi
         </h3>
         <div className="grid grid-cols-2 gap-3">
           <div className="flex flex-col gap-1">
@@ -481,7 +481,7 @@ export default function MiniSolutions({ onBackToMenu }: MiniSolutionsProps) {
           onPause={() => setIsBreathing(false)}
         />
         <audio
-          src="/audio/ticking-lembut.mp3"
+          src="/audio/meditasi.mp3"
           ref={tickAudioRef}
           loop
           onPlay={() => setIsTimerRunning(true)}

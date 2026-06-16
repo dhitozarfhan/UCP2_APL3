@@ -9,7 +9,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Anti Burnout Junior",
+  title: "Adulting 101: The Junior Edition",
   description: "Belajar Menghadapi Hidup Tanpa Burnout - Aplikasi self-healing interaktif untuk remaja.",
 };
 

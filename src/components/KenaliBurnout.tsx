@@ -32,14 +32,14 @@ const SYMPTOMS: Symptom[] = [
   },
   {
     icon: "🥀",
-    image: "/images/hilang-semangat.svg",
+    image: "/images/hilang-semangat.jpg",
     title: "Hilang Semangat",
     desc: "Hobi, game, atau ngumpul bareng temen yang biasanya seru, sekarang rasanya hambar dan males banget diikuti.",
     color: "bg-brand-cream-50 border-brand-cream-200 text-brand-cream-800",
   },
   {
     icon: "😟",
-    image: "/images/mudah-cemas.svg",
+    image: "/images/mudah-cemas.jpg",
     title: "Mudah Cemas",
     desc: "Sering deg-degan kepikiran nilai sekolah, takut melakukan kesalahan sekecil apa pun, atau cemas masa depan.",
     color: "bg-brand-mint-50 border-brand-mint-200 text-brand-mint-800",
@@ -53,7 +53,7 @@ const SYMPTOMS: Symptom[] = [
   },
   {
     icon: "⚡",
-    image: "/images/kewalahan-tugas.svg",
+    image: "/images/kewalahan-tugas.jpg",
     title: "Kewalahan Tugas",
     desc: "Merasa terbebani dan stres berat akibat tumpukan PR sekolah serta aktivitas belajar yang berlebihan.",
     color: "bg-red-50 border-red-200 text-red-800",
@@ -164,17 +164,13 @@ export default function KenaliBurnout({ onBackToMenu }: KenaliBurnoutProps) {
                     : sym.color
                 }`}
               >
-                {/* Image Illustration with Emoji Fallback */}
-                <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-white/50 mb-1.5 relative group">
+                {/* Image Illustration */}
+                <div className="w-14 h-14 rounded-2xl overflow-hidden mb-2 shadow-xs border border-stone-200/50 group-hover:scale-105 transition-transform">
                   <img 
                     src={sym.image} 
                     alt={sym.title} 
                     className="w-full h-full object-cover" 
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
                   />
-                  <span className="text-xl select-none absolute z-0">{sym.icon}</span>
                 </div>
 
                 <span className="text-xs font-bold">{sym.title}</span>
